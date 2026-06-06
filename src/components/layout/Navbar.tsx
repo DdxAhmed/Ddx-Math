@@ -19,30 +19,31 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
-      <div className="container flex h-16 max-w-screen-2xl items-center px-4 md:px-8">
-        <div className="flex gap-6 md:gap-10">
+      <div className="container relative flex h-16 max-w-screen-2xl items-center justify-between px-4 md:px-8">
+        <div className="flex items-center">
           <Link href="/" className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-primary-foreground font-mono font-bold text-lg">
               ∫
             </div>
             <span className="font-bold inline-block font-sans text-xl tracking-tight">DdxMath</span>
           </Link>
-          <nav className="hidden md:flex gap-6">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`flex items-center text-sm font-medium transition-colors hover:text-primary ${
-                  location === link.href ? "text-primary" : "text-muted-foreground"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
         </div>
 
-        <div className="flex flex-1 items-center justify-end space-x-2">
+        <nav className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`flex items-center text-sm font-medium transition-colors hover:text-primary ${
+                location === link.href ? "text-primary" : "text-muted-foreground"
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="flex items-center justify-end space-x-2">
           <nav className="flex items-center">
             <Button
               variant="ghost"

@@ -12,16 +12,9 @@ export default function HomePage() {
         <StatsSection />
         <FeaturedLessons />
         <LatestResources />
-        
+
         <footer className="py-12 border-t border-border/40 bg-muted/20 text-center text-muted-foreground">
           <div className="container px-4">
-            <div className="flex justify-center items-center gap-2 mb-4">
-              <div className="w-6 h-6 bg-primary rounded bg-primary flex items-center justify-center text-primary-foreground font-mono font-bold text-xs">
-                ∫
-              </div>
-              <span className="font-bold text-foreground">DdxMath</span>
-            </div>
-            <p className="text-sm">A centralized learning hub for mathematics students.</p>
             <p className="text-xs text-muted-foreground/60 mt-2">Powered by DdxAhmed</p>
           </div>
         </footer>
