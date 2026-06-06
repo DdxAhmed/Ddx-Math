@@ -19,7 +19,7 @@ export default function HomePage() {
               <div className="w-6 h-6 bg-primary rounded bg-primary flex items-center justify-center text-primary-foreground font-mono font-bold text-xs">
                 ∫
               </div>
-              <span className="font-bold text-foreground">Math Vault</span>
+              <span className="font-bold text-foreground">DdxMath</span>
             </div>
             <p className="text-sm">A centralized learning hub for mathematics students.</p>
           </div>

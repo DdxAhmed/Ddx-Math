@@ -11,14 +11,10 @@ import LessonsPage from "@/pages/LessonsPage";
 import LessonDetailPage from "@/pages/LessonDetailPage";
 import ResourcesPage from "@/pages/ResourcesPage";
 import SearchPage from "@/pages/SearchPage";
-import AdminDashboard from "@/pages/AdminDashboard";
-import { usePageTracking } from "@/hooks/usePageTracking";
 
 const queryClient = new QueryClient();
 
 function Router() {
-  usePageTracking();
-
   return (
     <AppShell>
       <Switch>
@@ -27,8 +23,6 @@ function Router() {
         <Route path="/lessons/:id" component={LessonDetailPage} />
         <Route path="/resources" component={ResourcesPage} />
         <Route path="/search" component={SearchPage} />
-        <Route path="/admin" component={AdminDashboard} />
-        <Route path="/dashboard" component={AdminDashboard} />
         <Route component={NotFound} />
       </Switch>
     </AppShell>
