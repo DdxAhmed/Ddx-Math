@@ -25,6 +25,27 @@ export default defineConfig({
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
     chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            if (id.includes("katex")) {
+              return "vendor-katex";
+            }
+            if (id.includes("recharts") || id.includes("d3")) {
+              return "vendor-charts";
+            }
+            if (id.includes("lucide-react")) {
+              return "vendor-icons";
+            }
+            if (id.includes("framer-motion")) {
+              return "vendor-motion";
+            }
+            return "vendor";
+          }
+        }
+      }
+    }
   },
   server: {
     port,

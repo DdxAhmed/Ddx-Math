@@ -10,6 +10,7 @@ import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { ArrowLeft, CheckCircle2, Circle, Heart, Play, FileText } from "lucide-react";
 import { useEffect, useRef } from "react";
 import katex from "katex";
+import "katex/dist/katex.min.css";
 import { ResourceCard } from "@/components/resources/ResourceCard";
 import { useToast } from "@/hooks/use-toast";
 import { useSEO } from "@/hooks/useSEO";

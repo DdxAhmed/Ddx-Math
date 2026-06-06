@@ -6,25 +6,34 @@ import { ThemeProvider } from "next-themes";
 import { AppShell } from "@/components/layout/AppShell";
 import NotFound from "@/pages/not-found";
 
-import HomePage from "@/pages/HomePage";
-import LessonsPage from "@/pages/LessonsPage";
-import LessonDetailPage from "@/pages/LessonDetailPage";
-import ResourcesPage from "@/pages/ResourcesPage";
-import SearchPage from "@/pages/SearchPage";
+import { lazy, Suspense } from "react";
+
+const HomePage = lazy(() => import("@/pages/HomePage"));
+const LessonsPage = lazy(() => import("@/pages/LessonsPage"));
+const LessonDetailPage = lazy(() => import("@/pages/LessonDetailPage"));
+const ResourcesPage = lazy(() => import("@/pages/ResourcesPage"));
+const SearchPage = lazy(() => import("@/pages/SearchPage"));
 
 const queryClient = new QueryClient();
 
 function Router() {
   return (
     <AppShell>
-      <Switch>
-        <Route path="/" component={HomePage} />
-        <Route path="/lessons" component={LessonsPage} />
-        <Route path="/lessons/:id" component={LessonDetailPage} />
-        <Route path="/resources" component={ResourcesPage} />
-        <Route path="/search" component={SearchPage} />
-        <Route component={NotFound} />
-      </Switch>
+      <Suspense fallback={
+        <div className="flex flex-col items-center justify-center min-h-[50vh] gap-3">
+          <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-primary"></div>
+          <span className="text-sm text-muted-foreground animate-pulse">Loading DdxMath...</span>
+        </div>
+      }>
+        <Switch>
+          <Route path="/" component={HomePage} />
+          <Route path="/lessons" component={LessonsPage} />
+          <Route path="/lessons/:id" component={LessonDetailPage} />
+          <Route path="/resources" component={ResourcesPage} />
+          <Route path="/search" component={SearchPage} />
+          <Route component={NotFound} />
+        </Switch>
+      </Suspense>
     </AppShell>
   );
 }
