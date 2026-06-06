@@ -4,8 +4,16 @@ import { LessonGrid } from "@/components/lessons/LessonGrid";
 import { lessons } from "@/data/lessons";
 import { motion } from "framer-motion";
 
+import { useSEO } from "@/hooks/useSEO";
+
 export default function LessonsPage() {
   const [subjectFilter, setSubjectFilter] = useState<string>("Math 2");
+  
+  useSEO({
+    title: "Lessons",
+    description: "Browse our structured mathematics video lectures across Math 1, Math 2, Math 3, and Math 4 courses.",
+    keywords: "math lectures, video lessons, mathematics, calculus lectures, algebra lessons, university math",
+  });
 
   const subjects = ["Math 1", "Math 2", "Math 3", "Math 4"];
 

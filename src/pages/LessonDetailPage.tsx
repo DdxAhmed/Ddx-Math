@@ -12,6 +12,7 @@ import { useEffect, useRef } from "react";
 import katex from "katex";
 import { ResourceCard } from "@/components/resources/ResourceCard";
 import { useToast } from "@/hooks/use-toast";
+import { useSEO } from "@/hooks/useSEO";
 
 export default function LessonDetailPage() {
   const [match, params] = useRoute("/lessons/:id");
@@ -23,6 +24,16 @@ export default function LessonDetailPage() {
   const [notes, setNotes] = useLocalStorage<string>(`mv_notes_${id}`, "");
   const { toast } = useToast();
   const descRef = useRef<HTMLParagraphElement>(null);
+
+  useSEO({
+    title: lesson ? lesson.title : "Lesson Details",
+    description: lesson 
+      ? `${lesson.title} - ${lesson.chapter}. ${lesson.description.replace(/<[^>]*>/g, '').slice(0, 150)}` 
+      : "View lesson details and study notes on DdxMath.",
+    keywords: lesson 
+      ? `${lesson.tags.join(", ")}, ${lesson.title}, ${lesson.chapter}, math lecture` 
+      : "mathematics, video lecture, study materials",
+  });
 
   useEffect(() => {
     if (id) addRecentlyViewed(id);

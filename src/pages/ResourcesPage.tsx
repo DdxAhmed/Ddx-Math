@@ -6,9 +6,17 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { motion } from "framer-motion";
 
+import { useSEO } from "@/hooks/useSEO";
+
 export default function ResourcesPage() {
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
+
+  useSEO({
+    title: "Resources",
+    description: "Download study sheets, lecture notes, formula sheets, past exams, and assignments for your math courses.",
+    keywords: "math PDFs, study resources, past exams, formula sheets, math materials, DdxMath downloads",
+  });
 
   const categories = ["all", "Midterms", "Questions", "By Mohamed Mosaad", "By Rahaf", "Videos"];
 

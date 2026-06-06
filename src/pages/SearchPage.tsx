@@ -6,8 +6,16 @@ import { ResourceGrid } from "@/components/resources/ResourceGrid";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Search as SearchIcon } from "lucide-react";
 
+import { useSEO } from "@/hooks/useSEO";
+
 export default function SearchPage() {
   const { query, setQuery, results } = useSearch("");
+
+  useSEO({
+    title: "Search",
+    description: "Search across all mathematics video lectures, study sheets, formula sheets, assignments, and exam resources instantly.",
+    keywords: "math search, search math formulas, find calculus lessons, search engine math",
+  });
 
   return (
     <PageTransition className="container max-w-5xl mx-auto px-4 py-12">

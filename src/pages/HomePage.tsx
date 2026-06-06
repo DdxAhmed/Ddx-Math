@@ -4,7 +4,15 @@ import { StatsSection } from "@/components/home/StatsSection";
 import { FeaturedLessons } from "@/components/home/FeaturedLessons";
 import { LatestResources } from "@/components/home/LatestResources";
 
+import { useSEO } from "@/hooks/useSEO";
+
 export default function HomePage() {
+  useSEO({
+    title: "Home",
+    description: "DdxMath — A centralized learning hub for mathematics students. Access quality math lessons, study materials, exams, and formulas.",
+    keywords: "math, mathematics, learning hub, calculus, algebra, resources, study sheets, DdxMath",
+  });
+
   return (
     <PageTransition>
       <div className="flex flex-col min-h-screen">
