@@ -22,6 +22,7 @@ export default function HomePage() {
               <span className="font-bold text-foreground">DdxMath</span>
             </div>
             <p className="text-sm">A centralized learning hub for mathematics students.</p>
+            <p className="text-xs text-muted-foreground/60 mt-2">Powered by DdxAhmed</p>
           </div>
         </footer>
       </div>
