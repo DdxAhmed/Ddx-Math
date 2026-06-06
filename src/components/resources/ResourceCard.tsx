@@ -6,6 +6,7 @@ import { FileText, Download, FileArchive, MonitorPlay, FileCheck, CheckCircle2, 
 import { useProgress } from "@/hooks/useProgress";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
+import { trackDownload } from "@/lib/analytics";
 
 export function ResourceCard({ resource, index = 0 }: { resource: Resource, index?: number }) {
   const { downloadHistory, addDownload } = useProgress();
@@ -26,6 +27,7 @@ export function ResourceCard({ resource, index = 0 }: { resource: Resource, inde
 
   const handleDownload = () => {
     addDownload(resource.id);
+    trackDownload(resource.id, resource.title);
     
     if (resource.downloadUrl && resource.downloadUrl !== "#") {
       const link = document.createElement("a");

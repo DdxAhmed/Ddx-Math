@@ -1,7 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { useTheme } from "@/hooks/useTheme";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun, Menu, Search, BookOpen, Library, Sigma } from "lucide-react";
+import { Moon, Sun, Menu, Search, BookOpen, Library, Sigma, BarChart3 } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
 
@@ -15,6 +15,7 @@ export function Navbar() {
     { href: "/lessons", label: "Lessons", icon: BookOpen },
     { href: "/resources", label: "Resources", icon: Library },
     { href: "/search", label: "Search", icon: Search },
+    { href: "/admin", label: "Dashboard", icon: BarChart3 },
   ];
 
   return (
