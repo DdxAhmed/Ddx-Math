@@ -23,10 +23,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
       <div className="container relative flex h-16 max-w-screen-2xl items-center justify-between px-4 md:px-8">
         <div className="flex items-center">
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-primary-foreground font-mono font-bold text-lg">
-              ∫
-            </div>
+          <Link href="/" className="flex items-center">
             <span className="font-bold inline-block font-sans text-xl tracking-tight">DdxMath</span>
           </Link>
         </div>
