@@ -1,7 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { useTheme } from "@/hooks/useTheme";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun, Menu, Search, BookOpen, Library, Sigma } from "lucide-react";
+import { Moon, Sun, Menu, Search, BookOpen, Library, Sigma, Award, FileText } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
 
@@ -14,6 +14,8 @@ export function Navbar() {
     { href: "/", label: "Home", icon: Sigma },
     { href: "/lessons", label: "Lessons", icon: BookOpen },
     { href: "/resources", label: "Resources", icon: Library },
+    { href: "/quizzes", label: "Quizzes", icon: Award },
+    { href: "/cheat-sheet", label: "Cheat Sheet", icon: FileText },
     { href: "/search", label: "Search", icon: Search },
   ];
 
@@ -29,7 +31,7 @@ export function Navbar() {
           </Link>
         </div>
 
-        <nav className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
+        <nav className="hidden lg:flex items-center gap-5 xl:gap-6 absolute left-1/2 -translate-x-1/2">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -61,7 +63,7 @@ export function Navbar() {
 
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden ml-2">
+                <Button variant="ghost" size="icon" className="lg:hidden ml-2">
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Toggle menu</span>
                 </Button>

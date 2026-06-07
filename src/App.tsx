@@ -12,6 +12,8 @@ const HomePage = lazy(() => import("@/pages/HomePage"));
 const LessonsPage = lazy(() => import("@/pages/LessonsPage"));
 const LessonDetailPage = lazy(() => import("@/pages/LessonDetailPage"));
 const ResourcesPage = lazy(() => import("@/pages/ResourcesPage"));
+const QuizzesPage = lazy(() => import("@/pages/QuizzesPage"));
+const CheatSheetPage = lazy(() => import("@/pages/CheatSheetPage"));
 const SearchPage = lazy(() => import("@/pages/SearchPage"));
 
 const queryClient = new QueryClient();
@@ -30,6 +32,8 @@ function Router() {
           <Route path="/lessons" component={LessonsPage} />
           <Route path="/lessons/:id" component={LessonDetailPage} />
           <Route path="/resources" component={ResourcesPage} />
+          <Route path="/quizzes" component={QuizzesPage} />
+          <Route path="/cheat-sheet" component={CheatSheetPage} />
           <Route path="/search" component={SearchPage} />
           <Route component={NotFound} />
         </Switch>

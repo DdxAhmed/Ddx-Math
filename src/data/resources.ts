@@ -6,7 +6,7 @@ export interface Resource {
   type: ResourceType;
   chapter: string;
   subject: string;
-  category: "Midterms" | "Questions" | "By Mohamed Mosaad" | "By Rahaf" | "Videos";
+  category: "Midterms" | "Questions" | "By Mohamed Mosaad" | "By Rahaf" | "Videos" | "References";
   fileSize: string;
   downloadUrl: string;
 }
@@ -193,13 +193,43 @@ export const resources: Resource[] = [
     downloadUrl: "#",
   },
   {
-    id: "res-gen-03",
-    title: "Latex Setup Video Walkthrough",
-    type: "Video",
-    chapter: "General",
-    subject: "General",
-    category: "Videos",
-    fileSize: "12.5 MB",
-    downloadUrl: "#",
+    id: "res-ref-01",
+    title: "Advanced Engineering Mathematics",
+    type: "PDF",
+    chapter: "Reference Book",
+    subject: "Engineering Mathematics",
+    category: "References",
+    fileSize: "9.8 MB",
+    downloadUrl: "/Refrence/AdvancedEngineeringMathematics.pdf",
+  },
+  {
+    id: "res-ref-02",
+    title: "Thomas' Calculus",
+    type: "PDF",
+    chapter: "Reference Book",
+    subject: "Calculus",
+    category: "References",
+    fileSize: "22.1 MB",
+    downloadUrl: "/Refrence/Thomas_Calculus.pdf",
+  },
+  {
+    id: "res-ref-03",
+    title: "Calculus: Early Transcendental Functions (4th Ed)",
+    type: "PDF",
+    chapter: "Reference Book",
+    subject: "Calculus",
+    category: "References",
+    fileSize: "64.3 MB",
+    downloadUrl: "/Refrence/calculus-early-transcendental-functions-4-ed-0071316566-9780071316569_compress.pdf",
+  },
+  {
+    id: "res-q-01",
+    title: "Partial Fractions Questions",
+    type: "PDF",
+    chapter: "Partial Fractions",
+    subject: "Math 2",
+    category: "Questions",
+    fileSize: "86 KB",
+    downloadUrl: "/Partial Fractions Questions.pdf",
   }
 ];

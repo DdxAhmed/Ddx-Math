@@ -18,7 +18,7 @@ export default function ResourcesPage() {
     keywords: "math PDFs, study resources, past exams, formula sheets, math materials, DdxMath downloads",
   });
 
-  const categories = ["all", "Midterms", "Questions", "By Mohamed Mosaad", "By Rahaf", "Videos"];
+  const categories = ["all", "Midterms", "Questions", "By Mohamed Mosaad", "By Rahaf", "Videos", "References"];
 
   const filteredResources = resources.filter(resource => {
     const matchesSearch = resource.title.toLowerCase().includes(search.toLowerCase());
