@@ -23,7 +23,17 @@ export default function CheatSheetPage() {
     keywords: "math formulas, integral cheat sheet, derivative rules, latex formulas, math sheet",
   });
 
-  const categories = ["all", "Limits", "Derivatives", "Integrals", "Series & Sequences", "ODEs", "Partial Fractions"];
+  const categories = [
+    "all", 
+    "Partial Fractions", 
+    "Series & Sequences", 
+    "Separation of Variables", 
+    "Homogeneous DE", 
+    "Linear DE", 
+    "Bernoulli Equation", 
+    "Second Order DE", 
+    "System of Equations"
+  ];
 
   const handleCopy = (formulaObj: Formula) => {
     navigator.clipboard.writeText(formulaObj.formula);
@@ -112,6 +122,38 @@ export default function CheatSheetPage() {
             const isCopied = copiedId === f.id;
             const isExpanded = expandedId === f.id;
 
+            // Split bilingual names and descriptions
+            const nameParts = f.name.split(" / ");
+            const engName = nameParts[0];
+            const arbName = nameParts[1] || "";
+
+            const descParts = f.description.split(" / ");
+            const engDesc = descParts[0];
+            const arbDesc = descParts[1] || "";
+
+            const getCategoryColor = (category: string) => {
+              switch (category) {
+                case "Partial Fractions":
+                  return "bg-blue-500/10 text-blue-500 border-blue-500/20";
+                case "Series & Sequences":
+                  return "bg-emerald-500/10 text-emerald-500 border-emerald-500/20";
+                case "Separation of Variables":
+                  return "bg-indigo-500/10 text-indigo-500 border-indigo-500/20";
+                case "Homogeneous DE":
+                  return "bg-violet-500/10 text-violet-500 border-violet-500/20";
+                case "Linear DE":
+                  return "bg-purple-500/10 text-purple-500 border-purple-500/20";
+                case "Bernoulli Equation":
+                  return "bg-pink-500/10 text-pink-500 border-pink-500/20";
+                case "Second Order DE":
+                  return "bg-orange-500/10 text-orange-500 border-orange-500/20";
+                case "System of Equations":
+                  return "bg-cyan-500/10 text-cyan-500 border-cyan-500/20";
+                default:
+                  return "bg-primary/10 text-primary border-primary/20";
+              }
+            };
+
             return (
               <motion.div
                 key={f.id}
@@ -119,35 +161,53 @@ export default function CheatSheetPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: idx * 0.05 }}
               >
-                <Card className="group h-full flex flex-col justify-between border-border/50 bg-card hover:shadow-md hover:border-primary/20 transition-all duration-200">
-                  <div>
-                    <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-4">
-                      <div>
-                        <span className="text-xs font-semibold text-primary/80 uppercase tracking-wider">{f.category}</span>
-                        <CardTitle className="text-lg font-bold mt-1">{f.name}</CardTitle>
+                <Card className="group h-full flex flex-col justify-between border-border/50 bg-card hover:shadow-md hover:border-primary/20 transition-all duration-200 w-full overflow-hidden">
+                  <div className="w-full overflow-hidden">
+                    <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-4 w-full">
+                      <div className="space-y-1.5 flex-1 pr-2 min-w-0">
+                        <span className={`inline-block text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${getCategoryColor(f.category)}`}>
+                          {f.category}
+                        </span>
+                        <CardTitle className="text-lg font-bold mt-1 text-foreground leading-snug break-words">
+                          {engName}
+                        </CardTitle>
+                        {arbName && (
+                          <div className="text-sm font-semibold text-primary/80 break-words" dir="rtl">
+                            {arbName}
+                          </div>
+                        )}
                       </div>
                       <Button
                         size="icon"
                         variant="ghost"
-                        className="h-8 w-8 text-muted-foreground hover:text-primary rounded-lg"
+                        className="h-8 w-8 text-muted-foreground hover:text-primary rounded-lg shrink-0"
                         onClick={() => handleCopy(f)}
                         title="Copy LaTeX formula"
                       >
                         {isCopied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
                       </Button>
                     </CardHeader>
-                    <CardContent className="space-y-4">
+                    <CardContent className="space-y-4 w-full overflow-hidden">
                       {/* Formatted formula block */}
-                      <div className="p-4 bg-muted/40 rounded-xl border border-border/30 overflow-x-auto text-center flex items-center justify-center min-h-[70px]">
-                        <MathRenderer formula={f.formula} displayMode={true} className="text-foreground font-mono text-base md:text-lg" />
+                      <div className="p-4 bg-gradient-to-br from-violet-500/5 to-fuchsia-500/5 hover:from-violet-500/10 hover:to-fuchsia-500/10 transition-colors border border-primary/10 rounded-xl overflow-x-auto w-full max-w-full text-center flex items-center justify-center min-h-[80px]">
+                        <MathRenderer formula={f.formula} displayMode={true} className="text-foreground font-mono text-base md:text-lg max-w-full" />
                       </div>
-                      <div className="text-sm text-muted-foreground leading-relaxed">
-                        <MathRenderer formula={f.description} />
+                      
+                      {/* Bilingual Description Stack */}
+                      <div className="space-y-2 text-sm w-full overflow-hidden">
+                        <div className="text-foreground/90 leading-relaxed text-left break-words" dir="ltr">
+                          <MathRenderer formula={engDesc} />
+                        </div>
+                        {arbDesc && (
+                          <div className="text-muted-foreground/90 leading-relaxed text-right border-t border-border/20 pt-2 break-words" dir="rtl">
+                            <MathRenderer formula={arbDesc} />
+                          </div>
+                        )}
                       </div>
                     </CardContent>
                   </div>
 
-                  <div className="border-t border-border/30 p-4">
+                  <div className="border-t border-border/30 p-4 w-full">
                     <Button
                       variant="ghost"
                       size="sm"
@@ -165,11 +225,11 @@ export default function CheatSheetPage() {
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.2 }}
-                          className="overflow-hidden mt-3 bg-muted/20 border border-border/40 rounded-xl p-3.5 space-y-2"
+                          className="overflow-hidden mt-3 bg-muted/20 border border-border/40 rounded-xl p-3.5 space-y-2 w-full"
                         >
                           <span className="block text-[11px] font-bold text-muted-foreground uppercase tracking-widest">Example Application</span>
-                          <div className="text-sm font-mono overflow-x-auto">
-                            <MathRenderer formula={f.examples} displayMode={true} className="text-primary" />
+                          <div className="text-sm font-mono overflow-x-auto w-full max-w-full">
+                            <MathRenderer formula={f.examples} displayMode={true} className="text-primary max-w-full" />
                           </div>
                         </motion.div>
                       )}

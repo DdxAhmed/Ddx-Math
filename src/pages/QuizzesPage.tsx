@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { PageTransition } from "@/components/layout/PageTransition";
-import { quizzes, Quiz, Question } from "@/data/quizzes";
+import { midtermExams, Quiz, Question } from "@/data/quizzes";
 import { MathRenderer } from "@/components/ui/Math";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { ChevronRight, ArrowLeft, CheckCircle2, XCircle, RotateCcw, Award, BookOpen, Clock, BarChart } from "lucide-react";
+import { ChevronRight, ArrowLeft, CheckCircle2, XCircle, RotateCcw, Award, BookOpen, Clock, BarChart, FileText, Settings, Trash2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 import { useSEO } from "@/hooks/useSEO";
@@ -20,6 +20,7 @@ export default function QuizzesPage() {
   const [userAnswers, setUserAnswers] = useState<number[]>([]);
   const [quizFinished, setQuizFinished] = useState(false);
   const [showExplanation, setShowExplanation] = useState(false);
+
   const { toast } = useToast();
 
   useSEO({
@@ -119,7 +120,7 @@ export default function QuizzesPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {quizzes.map((quiz) => (
+              {midtermExams.map((quiz) => (
                 <Card 
                   key={quiz.id} 
                   className="group flex flex-col justify-between border-border/50 bg-card/60 hover:shadow-lg hover:border-primary/30 transition-all duration-300 overflow-hidden relative"
@@ -152,7 +153,7 @@ export default function QuizzesPage() {
                       onClick={() => startQuiz(quiz)} 
                       className="w-full gap-2 rounded-xl shadow-sm group-hover:bg-primary group-hover:text-primary-foreground"
                     >
-                      Start Practice <ChevronRight className="h-4 w-4" />
+                      Start Midterm <ChevronRight className="h-4 w-4" />
                     </Button>
                   </CardFooter>
                 </Card>
@@ -192,8 +193,10 @@ export default function QuizzesPage() {
             {/* Question Card */}
             <Card className="border-border/50 bg-card overflow-hidden">
               <CardHeader className="pb-6 border-b border-border/30 bg-muted/10">
-                <div className="text-lg md:text-xl font-medium leading-relaxed text-foreground">
-                  <MathRenderer formula={selectedQuiz.questions[currentQuestionIdx].questionText} />
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                  <div className="text-lg md:text-xl font-medium leading-relaxed text-foreground flex-1">
+                    <MathRenderer formula={selectedQuiz.questions[currentQuestionIdx].questionText} />
+                  </div>
                 </div>
               </CardHeader>
               <CardContent className="pt-6 space-y-3">
